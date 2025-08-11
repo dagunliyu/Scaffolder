@@ -30,7 +30,6 @@ class TVertex : public vcg::Vertex< TUsedTypes,
     vcg::vertex::Coord3f,  // 12 byte
     vcg::vertex::BitFlags, // 4 byte
     vcg::vertex::Normal3f, // 12 byte
-    vcg::vertex::CurvaturefOcf, // 0 byte
     vcg::vertex::QualityfOcf, // 0 byte
     vcg::vertex::VFAdjOcf,  // 0 byte
     vcg::vertex::Mark  // 0 byte

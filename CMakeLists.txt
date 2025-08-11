@@ -1,5 +1,7 @@
 ﻿cmake_minimum_required (VERSION 3.18)
-
+cmake_policy(VERSION 3.18)
+cmake_policy(SET CMP0135 NEW)
+cmake_policy(SET CMP0169 OLD)
 project ("Scaffolder")
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
@@ -8,13 +10,15 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 # libigl
-option(LIBIGL_WITH_OPENGL            "Use OpenGL"         OFF)
-option(LIBIGL_WITH_OPENGL_GLFW       "Use GLFW"           OFF)
+option(LIBIGL_WITH_OPENGL        "Use OpenGL"             OFF)
+option(LIBIGL_WITH_OPENGL_GLFW   "Use GLFW"               OFF)
+option(LIBIGL_BUILD_TESTS        "Build libigl unit test" OFF)
+option(LIBIGL_BUILD_TUTORIALS    "Build libigl tutorial"  OFF)
 option(LIBIGL_USE_STATIC_LIBRARY "Use LibIGL as static library" ON)
-option(IGL_STATIC_RUNTIME	"Use LibIGL as static library"	ON)
-option(BUILD_SCAFFOLDER     "Build binary" ON)
-option(BUILD_PYSCAFFOLDER   "Build python library" ON)
-option(BUILD_WITH_OPENMP   "USE OpenMP" ON)
+option(IGL_STATIC_RUNTIME	     "Use LibIGL as static library"	ON)
+option(BUILD_SCAFFOLDER          "Build binary"         ON)
+option(BUILD_PYSCAFFOLDER        "Build python library" ON)
+option(BUILD_WITH_OPENMP         "USE OpenMP"           ON)
 add_definitions(-DOPENCTM_STATIC)
 if(MSVC)
   # Enable parallel compilation for Visual Studio
@@ -61,17 +65,17 @@ if(NOT EXISTS "${PROJECT_SOURCE_DIR}/external/libigl/CMakeLists.txt" OR
    NOT EXISTS "${PROJECT_SOURCE_DIR}/external/OpenCTM-1.0.3/lib/openctm.h")
   include(download_external_files)
   download_external_files(
-  https://github.com/nodtem66/Scaffolder/releases/download/v1.5.3/external.tar.gz
+  https://github.com/nodtem66/Scaffolder/releases/download/untagged-de49e23a021361bad834/external.tar.gz
   "${PROJECT_SOURCE_DIR}/scripts/external.tar.gz"
-  b54e452038dbdb77a458f91dab1c3377566a47e6bea6d4a0b51bf796b1912806
+  b18e072f8024de1583bbd00a3a355d825c9f537963ca4e0e0e181ac998e40489
   )
   file(ARCHIVE_EXTRACT INPUT "${PROJECT_SOURCE_DIR}/scripts/external.tar.gz" DESTINATION ${PROJECT_SOURCE_DIR})
 endif()
 
 find_package(Threads REQUIRED)
-find_package(LIBIGL REQUIRED)
 find_package(TBB REQUIRED)
 find_package(VCG REQUIRED)
+find_package(LIBIGL REQUIRED)
 find_package(Sol2 REQUIRED)
 find_package(OpenCTM REQUIRED)
 
@@ -135,6 +139,7 @@ if(BUILD_SCAFFOLDER)
     tbb
     Threads::Threads
     OpenMP::OpenMP_CXX
+    ${EIGEN3_INCLUDE_DIR}
     ${LUA_LIBRARIES}
   )
 
@@ -191,6 +196,7 @@ if(BUILD_PYSCAFFOLDER)
     tbb
     Threads::Threads
     OpenMP::OpenMP_CXX
+    ${EIGEN3_INCLUDE_DIR}
     ${LUA_LIBRARIES}
   )
   include(GNUInstallDirs)

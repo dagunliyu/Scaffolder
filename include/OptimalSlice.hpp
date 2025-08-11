@@ -665,22 +665,22 @@ namespace optimal_slice {
                         Point2d v = make_point2d(l->v[1], direction);
                         ContourHash::iterator item = hash.find(u);
                         if (item == hash.end())
-                            hash.emplace(u, make_pair(v, v));
+                            hash.emplace(u, std::make_pair(v, v));
                         else {
                             Point2d w = item->second.first;
                             Point2d target = item->second.second;
                             if (w == target) {
-                                item->second = make_pair(w, v);
+                                item->second = std::make_pair(w, v);
                             }
                         }
                         item = hash.find(v);
                         if (item == hash.end())
-                            hash.emplace(v, make_pair(u, u));
+                            hash.emplace(v, std::make_pair(u, u));
                         else {
                             Point2d w = item->second.first;
                             Point2d target = item->second.second;
                             if (w == target) {
-                                item->second = make_pair(w, u);
+                                item->second = std::make_pair(w, u);
                             }
                         }
                     }
@@ -764,7 +764,7 @@ namespace optimal_slice {
             for (auto list_it = it->second.begin(); list_it != it->second.end(); ++list_it) {
                 if (target == countInside[*list_it]) {
                     position[*list_it] = PolygonSide::PAIRED;
-                    pairList.push_back(make_pair(it->first, *list_it));
+                    pairList.push_back(std::make_pair(it->first, *list_it));
                 }
             }
         }
@@ -1138,7 +1138,7 @@ namespace optimal_slice {
         for (Polygons::const_iterator t = C.begin(); t != C.end(); t++) {
             if (t->size() < 2) continue;
             size_t index = (size_t)(t - C.begin());
-            std:string color = "eee";
+            std::string color = "eee";
             if (p[index] == PolygonSide::INSIDE) color = "f00";
             else if (p[index] == PolygonSide::OUTSIDE) color = "000";
             else if (p[index] == PolygonSide::PAIRED) color = "00f";

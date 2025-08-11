@@ -692,7 +692,7 @@ int main(int argc, char* argv[])
             }
             else {
                 vcg::tri::UpdateCurvature<TMesh>::MeanAndGaussian(mesh);
-                vcg::tri::UpdateQuality<TMesh>::VertexFromMeanCurvatureHG(mesh);
+                vcg::tri::UpdateQuality<TMesh>::VertexMeanFromCurvatureDir(mesh);
                 vcg::Histogramf H;
                 ComputePerVertexQualityHistogram(mesh, H, histogram_size);
                 std::stringstream _name;

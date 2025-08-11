@@ -144,7 +144,7 @@ int main(int argc, char* argv[])
             // create output directory
             if (!C.empty()) {
                 size_t firstindex = input_file.find_last_of("/\\");
-                firstindex = firstindex == string::npos ? 0 : firstindex + 1;
+                firstindex = firstindex == std::string::npos ? 0 : firstindex + 1;
                 size_t lastindex = input_file.find_last_of(".");
                 std::string dir = input_file.substr(firstindex, lastindex - firstindex);
                 dir.append("_svg");
@@ -198,7 +198,7 @@ int main(int argc, char* argv[])
         }
         catch (const std::exception & ex) {
             std::cout << "Exception: " << ex.what() << std::endl;
-            std::cout << strerror(errno) << endl;
+            std::cout << strerror(errno) << std::endl;
             return errno;
         }
     }
