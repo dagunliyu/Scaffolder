@@ -18,8 +18,8 @@ env:
   CMAKE_BUILD_PARALLEL_LEVEL: 8
 
 jobs:
-  build:
-    runs-on: ${{ github.event.inputs.os }}
+  prepare:
+    runs-on: "ubuntu-latest"
 
     steps:
     - name: Input
@@ -29,11 +29,32 @@ jobs:
       with:
         submodules: true
 
+    - name: Disable python library building
+      run: |
+        sed -i -e 's/"Build python library" ON/"Build python library" OFF/g' CMakeLists.txt
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: source-code
+        path: ${{ github.workspace }}
+  build:
+    needs: prepare
+    runs-on: ${{ github.event.inputs.os }}
+    steps:
+
     - name: Install libomp (macOS)
-      if: github.event.inputs.os == 'macos-latest'
-      run: brew install libomp
-      #run: curl -LO https://raw.githubusercontent.com/Homebrew/homebrew-core/master/Formula/libomp.rb && brew reinstall --build-from-source --formula ./libomp.rb
-      
+      if: contains(github.event.inputs.os, 'macos')
+      shell: bash
+      run: |
+        brew install libomp
+        [ -e /opt/homebrew/opt/libomp ] && ln -s /opt/homebrew/opt/libomp /usr/local/opt/libomp || true
+
+    - name: Download source code
+      uses: actions/download-artifact@v4
+      with:
+        name: source-code
+
     - name: Create Build Environment
       run: cmake -E make_directory ${{github.workspace}}/build
 
