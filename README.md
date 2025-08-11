@@ -1,30 +1,32 @@
 # Scaffolder
-![GitHub last commit](https://img.shields.io/github/last-commit/nodtem66/Scaffolder)
-
-![Build Status](https://github.com/nodtem66/Scaffolder/actions/workflows/binary.yml/badge.svg) [![Build Status](https://dev.azure.com/n66/PublicCI/_apis/build/status%2Fnodtem66.Scaffolder%20(Anaconda%20release)?branchName=master)](https://dev.azure.com/n66/PublicCI/_build/latest?definitionId=8&branchName=master)
-
-[![Anaconda](https://anaconda.org/nodtem66/scaffolder/badges/version.svg)](https://anaconda.org/nodtem66/scaffolder) ![Last update](https://anaconda.org/nodtem66/scaffolder/badges/latest_release_date.svg) ![Platform](https://anaconda.org/nodtem66/scaffolder/badges/platforms.svg)
-
-[![Socket Badge](https://socket.dev/api/badge/pypi/package/PyScaffolder/1.5.2.post2?artifact_id=tar-gz)](https://socket.dev/pypi/package/PyScaffolder/overview/1.5.2.post2/tar-gz)
+![GitHub Release](https://img.shields.io/github/v/release/nodtem66/scaffolder) ![GitHub last commit](https://img.shields.io/github/last-commit/nodtem66/Scaffolder) 
+[![PyPI - Version](https://img.shields.io/pypi/v/PyScaffolder)](https://pypi.org/project/PyScaffolder/) [![Socket Badge](https://socket.dev/api/badge/pypi/package/PyScaffolder/1.5.3?artifact_id=tar-gz)](https://socket.dev/pypi/package/PyScaffolder/overview/1.5.3/tar-gz)
 
 ![Scaffolder Logo](https://github.com/nodtem66/Scaffolder/raw/master/docs/images/scaffolder_logo.jpg)
 
 
 Transform a 3D model from STL/PLY/OFF/OBJ to a porous model with implicit function (e.g., Schwarz P/ Gyroid).
 
-[Documentation](https://nodtem66.github.io/Scaffolder) 
+| [Documentation](https://nodtem66.github.io/Scaffolder) | [Command line options](https://github.com/nodtem66/Scaffolder/releases/tag/v1.5.2) | [Python API](https://nodtem66.github.io/Scaffolder/python/) | [Example: TPMS with Python](https://nodtem66.github.io/Scaffolder/tutorial_2/) |
+| --- | ---- | ---- | ---- |
 
 ## Binary installation
-* Download from [Github Releases page](https://github.com/nodtem66/Scaffolder/releases) or
-* Install from Anaconda
-```bash
-conda install -c nodtem66 scaffolder
-```
+* Download from [Github Releases page](https://github.com/nodtem66/Scaffolder/releases)
+* Binary bundle consists of
+  * Main program: `Scaffolder`
+  * Pore analysis program: `Scaffold.SliceTest`
+  * Python library: `PyScaffold*.pyd`
+
+> [!note]
+> 1. If you need only python library, you can install it from `pip` (see below)
+> 2. From v1.5.3, I decided to end the support for binary executables as no one uses it and . Only python library will be released.  
 
 ## Python supports
 ```bash
 pip install PyScaffolder
 ```
+>  [!note]
+>  v1.5.3 support only Windows and Linux and Python [3.8 - 3.13](https://pypi.org/project/PyScaffolder/#files)
 
 ## Blender addon
 - Install the `Scaffolder-blender.zip` downloaded from [Release](https://github.com/nodtem66/Scaffolder/releases/tag/v1.5.1)
@@ -52,27 +54,30 @@ pip install PyScaffolder
 - [tbb](https://github.com/oneapi-src/oneTBB) - Threading library
 
 ## How it works
-- Read STL file and finding the boundary box
+- Read STL file and find the boundary box of STL mesh
 - Generate the grid and calculate the winding number with STL mesh
 - Use winding number to determine the condition for [implicit isosurface function](https://wewanttolearn.wordpress.com/2019/02/03/triply-periodic-minimal-surfaces/)
-- Generate the isosurface field in the same-size grid
+- Generate the isosurface field in the grid
 - Perform [Dual marching cube](https://github.com/dominikwodniok/dualmc) to construct the manifold
 - Clean up the duplicated vertices or faces, and abandon the group of connected faces having the diameter below the setting
 - Export to the target 3D format
 
 ## FAQ
 
-### How can I find the dataset from a study of coffient and isolevel?
+### How can I find the dataset from the paper?
 The raw dataset is available at [Mendeley Data](https://data.mendeley.com/datasets/sbxr7xxvnd/2).
 The program that used to generate that data was released at [Github repository](https://github.com/nodtem66/Scaffolder). You can also find the interactive visualization at [Google Colab](https://colab.research.google.com/github/nodtem66/Scaffolder/blob/master/data/data_visualization.ipynb)
 
-### Where is the implicit functions were defined in the C++ sourcecode?
+### Where are the implicit functions defined in the C++ source code?
 https://github.com/nodtem66/Scaffolder/blob/master/include/implicit_function.h
 
 ### Can you suggest alternative softwares like this program?
-- Rhino (Grasshopper)
-- nTopology
-- Hyperganic
+- [Cesogen](https://git.sr.ht/~paulapatience/cesogen) (There you can find a curated list of the other software)
+- [TPMS2STEP](https://github.com/Qiang-Zou/TPMS2STEP)
+- [LattGen](https://www.sciencedirect.com/science/article/pii/S2665963824000538)
+- Rhino (Grasshopper) (Commerical software)
+- nTopology (Commerical software)
+- Hyperganic (Commerical software)
 
 ## References
 - [Minimal surface Blog](https://minimalsurfaces.blog/)
