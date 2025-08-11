@@ -47,8 +47,18 @@ jobs:
       if: contains(github.event.inputs.os, 'macos')
       shell: bash
       run: |
+        arch -x86_64 zsh
+        arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+        arch -x86_64 /usr/local/bin/brew install libomp
         brew install libomp
-        [ -e /opt/homebrew/opt/libomp ] && ln -s /opt/homebrew/opt/libomp /usr/local/opt/libomp || true
+
+    - name: Check libomp in arm64/x86_64 and combine them using lipo (macOS)
+      if: contains(github.event.inputs.os, 'macos')
+      shell: bash
+      run: |
+        ls -l /opt/Homebrew/opt/libomp/lib/
+        ls -l /usr/local/opt/libomp/lib/
+        lipo /usr/local/opt/libomp/lib/libomp.dylib /opt/Homebrew/opt/libomp/lib/libomp.dylib -create -output ${{ github.workspace }}/libomp.dylib
 
     - name: Download source code
       uses: actions/download-artifact@v4
