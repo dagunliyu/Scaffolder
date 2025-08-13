@@ -2,7 +2,7 @@
 ![GitHub Release](https://img.shields.io/github/v/release/nodtem66/scaffolder) ![GitHub last commit](https://img.shields.io/github/last-commit/nodtem66/Scaffolder) 
 [![PyPI - Version](https://img.shields.io/pypi/v/PyScaffolder)](https://pypi.org/project/PyScaffolder/) [![Socket Badge](https://socket.dev/api/badge/pypi/package/PyScaffolder/1.5.3?artifact_id=tar-gz)](https://socket.dev/pypi/package/PyScaffolder/overview/1.5.3/tar-gz)
 
-![Scaffolder Logo](https://github.com/nodtem66/Scaffolder/raw/master/docs/images/scaffolder_logo.jpg)
+![Scaffolder Logo](https://github.com/nodtem66/Scaffolder/raw/main/docs/images/scaffolder_logo.jpg)
 
 
 Transform a 3D model from STL/PLY/OFF/OBJ to a porous model with implicit function (e.g., Schwarz P/ Gyroid).
