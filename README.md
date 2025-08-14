@@ -60,7 +60,7 @@ cmake .. -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_STA
 cmake --build . --config Release
 ```
 
-## Blender addon
+## Blender addon (prototype)
 - Install the `Scaffolder-blender.zip` downloaded from [Release](https://github.com/nodtem66/Scaffolder/releases/tag/v1.5.1)
 - The plugin will appear at `View > Sidebar` or `Press N`
 
@@ -68,16 +68,16 @@ cmake --build . --config Release
 
 - **Blender plugin with PyScaffolder**
 
-![Blender plugin](https://github.com/nodtem66/Scaffolder/raw/master/docs/images/blender-plugin.gif)
+![Blender plugin](https://github.com/nodtem66/Scaffolder/raw/main/docs/images/blender-plugin.gif)
 
 - **The figure of patterns implemented in this program**
 
-![TPMS Patterns](https://github.com/nodtem66/Scaffolder/raw/master/docs/images/patterns.jpg)
+![TPMS Patterns](https://github.com/nodtem66/Scaffolder/raw/main/docs/images/patterns.jpg)
 
 
 - **The examples of generated porous scaffold**
 
-![Examples porous scaffold](https://github.com/nodtem66/Scaffolder/raw/master/docs/images/examples.jpg)
+![Examples porous scaffold](https://github.com/nodtem66/Scaffolder/raw/main/docs/images/examples.jpg)
 
 ## Dependencies
 - [libigl](https://libigl.github.io/) - The computational geometry library
