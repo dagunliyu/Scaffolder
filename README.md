@@ -2,7 +2,7 @@
 ![GitHub Release](https://img.shields.io/github/v/release/nodtem66/scaffolder) ![GitHub last commit](https://img.shields.io/github/last-commit/nodtem66/Scaffolder) 
 [![PyPI - Version](https://img.shields.io/pypi/v/PyScaffolder)](https://pypi.org/project/PyScaffolder/) [![Socket Badge](https://socket.dev/api/badge/pypi/package/PyScaffolder/1.5.3?artifact_id=tar-gz)](https://socket.dev/pypi/package/PyScaffolder/overview/1.5.3/tar-gz)
 
-![Scaffolder Logo](https://github.com/nodtem66/Scaffolder/raw/master/docs/images/scaffolder_logo.jpg)
+![Scaffolder Logo](https://github.com/nodtem66/Scaffolder/raw/main/docs/images/scaffolder_logo.jpg)
 
 
 Transform a 3D model from STL/PLY/OFF/OBJ to a porous model with implicit function (e.g., Schwarz P/ Gyroid).
@@ -60,7 +60,7 @@ cmake .. -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_STA
 cmake --build . --config Release
 ```
 
-## Blender addon
+## Blender addon (prototype)
 - Install the `Scaffolder-blender.zip` downloaded from [Release](https://github.com/nodtem66/Scaffolder/releases/tag/v1.5.1)
 - The plugin will appear at `View > Sidebar` or `Press N`
 
@@ -68,16 +68,16 @@ cmake --build . --config Release
 
 - **Blender plugin with PyScaffolder**
 
-![Blender plugin](https://github.com/nodtem66/Scaffolder/raw/master/docs/images/blender-plugin.gif)
+![Blender plugin](https://github.com/nodtem66/Scaffolder/raw/main/docs/images/blender-plugin.gif)
 
 - **The figure of patterns implemented in this program**
 
-![TPMS Patterns](https://github.com/nodtem66/Scaffolder/raw/master/docs/images/patterns.jpg)
+![TPMS Patterns](https://github.com/nodtem66/Scaffolder/raw/main/docs/images/patterns.jpg)
 
 
 - **The examples of generated porous scaffold**
 
-![Examples porous scaffold](https://github.com/nodtem66/Scaffolder/raw/master/docs/images/examples.jpg)
+![Examples porous scaffold](https://github.com/nodtem66/Scaffolder/raw/main/docs/images/examples.jpg)
 
 ## Dependencies
 - [libigl](https://libigl.github.io/) - The computational geometry library
